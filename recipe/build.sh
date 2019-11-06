@@ -15,7 +15,8 @@ INCLUDE_PATH="${PREFIX}/include"
 LIBRARY_PATH="${PREFIX}/lib"
 
 # Always build PIC code for enable static linking into other shared libraries
-CXXFLAGS="${CXXFLAGS} -fPIC"
+# Use old ABI for std::string
+CXXFLAGS="${CXXFLAGS} -fPIC -D_GLIBCXX_USE_CXX11_ABI=0"
 
 if [ "$(uname)" == "Darwin" ]; then
     TOOLSET=clang
@@ -32,7 +33,7 @@ LINKFLAGS="${LINKFLAGS} -L${LIBRARY_PATH}"
 
 ./bootstrap.sh \
     --prefix="${PREFIX}" \
-    --with-toolset=cc \
+    --with-toolset=${TOOLSET} \
     --with-icu="${PREFIX}" \
     --with-python="${PYTHON}" \
     --with-python-root="${PREFIX} : ${PREFIX}/include/python${PY_VER}m ${PREFIX}/include/python${PY_VER}" \
@@ -40,7 +41,7 @@ LINKFLAGS="${LINKFLAGS} -L${LIBRARY_PATH}"
 
 # https://svn.boost.org/trac10/ticket/5917
 # https://stackoverflow.com/a/5244844/1005215
-sed -i.bak "s,cc,${TOOLSET},g" ${SRC_DIR}/project-config.jam
+# sed -i.bak "s,cc,${TOOLSET},g" ${SRC_DIR}/project-config.jam
 
 ./b2 -q \
     variant=release \

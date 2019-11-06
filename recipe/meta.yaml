@@ -11,7 +11,7 @@ source:
   sha256: 430ae8354789de4fd19ee52f3b1f739e1fba576f0aded0897c3c2bc00fb38778
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
@@ -19,7 +19,7 @@ requirements:
 
   host:
     - python
-    - numpy
+    - numpy =1.16
     - boost-cpp  {{ version }}
 
   run:
@@ -49,6 +49,8 @@ test:
     {% endfor %}
     - conda inspect linkages -p $PREFIX boost  # [not win]
     - conda inspect objects -p $PREFIX boost  # [osx]
+  requires:
+    - conda-build
 
 about:
   home: http://www.boost.org/
