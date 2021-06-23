@@ -29,12 +29,12 @@ requirements:
 
   host:
     - python
-    - numpy =1.21
+    - numpy =1.21  # [py != 36]
     - boost-cpp  {{ version }}
 
   run:
     - python
-    - numpy =1.21
+    - numpy =1.21  # [py != 36]
     - boost-cpp  {{ version }}
 
 test:
