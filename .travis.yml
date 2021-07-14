@@ -36,7 +36,6 @@ script:
   - export CI=travis
   - export GIT_BRANCH="$TRAVIS_BRANCH"
   - export FEEDSTOCK_NAME=$(basename ${TRAVIS_REPO_SLUG})
-  - export UPLOAD_ON_BRANCH="test"
 
 
   - if [[ ${PLATFORM} =~ .*linux.* ]]; then ./.scripts/run_docker_build.sh; fi
