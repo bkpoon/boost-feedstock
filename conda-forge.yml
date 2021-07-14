@@ -6,7 +6,6 @@ bot:
   abi_migration_branches:
     - v1.72.x
 
-upload_on_branch: test
 channels:
   targets:
     - [cctbx-dev, main]
