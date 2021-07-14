@@ -14,6 +14,11 @@ set -o pipefail
 INCLUDE_PATH="${PREFIX}/include"
 LIBRARY_PATH="${PREFIX}/lib"
 
+# set debug flags
+CPPFLAGS=${DEBUG_CPPFLAGS}
+CFLAGS=${DEBUG_CFLAGS}
+CXXFLAGS=${DEBUG_CXXFLAGS}
+
 # Always build PIC code for enable static linking into other shared libraries
 CXXFLAGS="${CXXFLAGS} -fPIC"
 
